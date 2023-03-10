@@ -16,8 +16,6 @@ El cual se encargará de hacer la conexión a la base de datos y guardar la info
 java -cp .\target\classes\ org.example.RESTLogService
 ```
 
-El cual va a permitir el acceso a los archivos estáticos como el index.
-
 y también ejecutar 
 
 ```
