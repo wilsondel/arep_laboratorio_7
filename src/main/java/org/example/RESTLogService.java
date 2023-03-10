@@ -28,9 +28,11 @@ public class RESTLogService {
         try {
             MongoDatabase database = mongoClient.getDatabase("monguitodb");
             post("/json", (request, response) -> {
-                String body = request.body().substring(5);
+                String body = "";
+                if (request.body().length() >= 5) {
+                    body = request.body().substring(5);
+                }
                 MongoCollection<Document> collection = database.getCollection("monguitodb");
-
                 Document document = new Document("message", body)
                         .append("date", new Date());
 
