@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Docker" />
+        <module name="taller_clase_docker_arep" />
       </profile>
     </annotationProcessing>
   </component>

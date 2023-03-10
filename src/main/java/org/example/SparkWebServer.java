@@ -5,8 +5,9 @@ import static spark.Spark.*;
 public class SparkWebServer {
 
     public static void main(String... args){
+        staticFiles.location("/public");
         port(getPort());
-        get("hello", (req,res) -> "Hello Docker!");
+        get("main", (req,res) -> "<h1>This is main!</h1>");
     }
 
     private static int getPort() {
