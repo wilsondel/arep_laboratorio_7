@@ -2,53 +2,50 @@
 
 
 ### Instalando
-Descarga o clona el repositorio y ejecuta
 
-```
-mvn package
-```
-
-luego puedes ejecutar desde tu IDE o en la terminal
-
-El cual se encargará de hacer la conexión a la base de datos y guardar la información.
-
-```
-java -cp .\target\classes\ org.example.RESTLogService
-```
-
-y también ejecutar 
-
-```
-java -cp .\target\classes\ org.example.SparkWebServer
-```
-
-El cual va a permitir el acceso a los archivos estáticos como el index.
-
-Luego, puedes ingresar a http://localhost:4567 o http://localhost:4567/index.html donde verás:
-
-![img.png](img/img.png)
-
-Al enviar información se obtiene:
+Según la arquitectura:
 
 ![img_1.png](img/img_1.png)
 
-Se crea la imagen
+Se crean las máquinas virtuales en AWS:
+
+![img.png](img/img.png)
+
+
+Se accede desde las terminales y se colocan a correr los servicios:
+LogService se usa el comando 
 
 ```
-docker build --tag mydocker .
+java -cp target/classes:target/dependency/* org.example.RESTLogService
 ```
-
-Y el docker compose
-
-```
-docker-compose up -d
-```
-
-Se evidencia como está arriba el contenedor:
 
 ![img_2.png](img/img_2.png)
 
-En el puerto 27017 del localhost se puede acceder al contenedor, como se evidencia anteriormente al obtener la respuesta de la base de datos.
+Se instala y se pone a correr el servicio de mongo:
+
+![img_3.png](img/img_3.png)
+
+Y luego el servicio de RoundRobin con el comando
+
+```
+java -cp target/classes:target/dependency/* org.example.SparkWebServer
+```
+
+![img_4.png](img/img_4.png)
+
+En este caso, se puede acceder a la dirección http://3.239.164.158:4567/ y se obtiene
+
+![img_5.png](img/img_5.png)
+
+Al enviar el mensaje se puede evidenciar que envía la peticion a una de las máquinas de LogService
+implementando de forma efectiva el roundRobin
+
+![img_6.png](img/img_6.png)
+
+
+![img_7.png](img/img_7.png)
+
+![img_8.png](img/img_8.png)
 
 
 ## Built With

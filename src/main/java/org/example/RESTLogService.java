@@ -22,7 +22,7 @@ public class RESTLogService {
 
     public static void main(String[] args) {
         port(getPort());
-        MongoClientURI uri = new MongoClientURI("mongodb://3.85.148.34:27017/monguitodb");
+        MongoClientURI uri = new MongoClientURI("mongodb://54.175.166.131:27017/monguitodb");
 
         MongoClient mongoClient = new MongoClient(uri);
         try {
