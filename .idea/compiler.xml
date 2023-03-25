@@ -9,6 +9,7 @@
         <module name="arep_laboratorio_5" />
         <module name="Docker" />
         <module name="taller_clase_docker_arep" />
+        <module name="arep_laboratorio_7" />
         <module name="arep_laboratorio_6" />
       </profile>
     </annotationProcessing>

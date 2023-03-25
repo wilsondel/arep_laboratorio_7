@@ -1,25 +1,27 @@
 package org.example;
 
 import static spark.Spark.*;
-public class HelloWorld {
 
-    private static final String OTHER_SERVICE_URL = "https://localhost:9000/hello2";
+public class OtherService {
 
-    private static final String PATH_FILE = "certificados/ecikeystore2.p12";
+    private static final String OTHER_SERVICE_URL = "https://localhost:5000/hello";
+
+    private static final String PATH_FILE = "certificados/ecikeystore.p12";
+
 
     public static void main(String[] args) {
         //secure("certificados/ecikeystore.p12", "password", null, null);
         secure(getKeyStore(), getPwdKeyStore(), null, null);
         port(getPort());
-        get("/hello", (req, res) -> "Hello World, THIS IS HELLO WORLD SERVICE!");
-        get("/hellootherservice", (req, res) -> URLReader.main(PATH_FILE,OTHER_SERVICE_URL));
+        get("/hello2", (req, res) -> "Hello World, THIS IS OTHER SERVICE!");
+        get("/hello2service", (req, res) -> URLReader.main(PATH_FILE,OTHER_SERVICE_URL));
     }
 
     private static String getKeyStore() {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "certificados/ecikeystore.p12";
+        return "certificados/ecikeystore2.p12";
     }
 
     private static String getPwdKeyStore() {
@@ -35,7 +37,7 @@ public class HelloWorld {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 5000;
+        return 9000;
     }
 
 }

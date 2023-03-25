@@ -18,11 +18,12 @@ import javax.net.ssl.TrustManagerFactory;
 
 public class URLReader {
 
-    public static void main(String[] args) {
+    public static String main(String pathFile, String myURL) {
         try {
 
             // Create a file and a password representation
-            File trustStoreFile = new File("certificados/myTrustStor");
+            //File trustStoreFile = new File("certificados/myTrustStor");
+            File trustStoreFile = new File(pathFile);
             char[] trustStorePassword = "password".toCharArray();
 
             // Load the trust store, the default type is "pkcs12", the alternative is "jks"
@@ -48,11 +49,12 @@ public class URLReader {
             SSLContext.setDefault(sslContext);
 
             // We can now read this URL
-            readURL("https://localhost:5000/hello");
+            //readURL("https://localhost:5000/hello");
+            return readURL(myURL);
 
             // This one can't be read because the Java default truststore has been
             // changed.
-            readURL("https://www.google.com");
+            //readURL("https://www.google.com");
 
         } catch (KeyStoreException ex) {
             Logger.getLogger(URLReader.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,10 +69,12 @@ public class URLReader {
         } catch (KeyManagementException ex) {
             Logger.getLogger(URLReader.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
 
     }
 
-    public static void readURL(String sitetoread) {
+    public static String readURL(String sitetoread) {
+        StringBuilder response = new StringBuilder();
         try {
             // Crea el objeto que representa una URL2
             URL siteURL = new URL(sitetoread);
@@ -102,9 +106,11 @@ public class URLReader {
             String inputLine = null;
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
+                response.append(inputLine);
             }
         } catch (IOException x) {
             System.err.println(x);
         }
+        return response.toString();
     }
 }
