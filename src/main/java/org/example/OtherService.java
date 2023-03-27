@@ -4,9 +4,9 @@ import static spark.Spark.*;
 
 public class OtherService {
 
-    private static final String OTHER_SERVICE_URL = "https://localhost:5000/hello";
+    private static final String OTHER_SERVICE_URL = "https://ec2-35-171-157-7.compute-1.amazonaws.com:5000/hello";
 
-    private static final String PATH_FILE = "certificados/ecikeystore.p12";
+    private static final String PATH_FILE = "target/certificados/ecikeystore.p12";
 
 
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class OtherService {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "certificados/ecikeystore2.p12";
+        return "target/certificados/ecikeystore2.p12";
     }
 
     private static String getPwdKeyStore() {

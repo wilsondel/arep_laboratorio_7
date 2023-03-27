@@ -3,9 +3,9 @@ package org.example;
 import static spark.Spark.*;
 public class HelloWorld {
 
-    private static final String OTHER_SERVICE_URL = "https://localhost:9000/hello2";
+    private static final String OTHER_SERVICE_URL = "https://ec2-52-91-185-212.compute-1.amazonaws.com:9000/hello2";
 
-    private static final String PATH_FILE = "certificados/ecikeystore2.p12";
+    private static final String PATH_FILE = "target/certificados/ecikeystore2.p12";
 
     public static void main(String[] args) {
         //secure("certificados/ecikeystore.p12", "password", null, null);
@@ -19,7 +19,7 @@ public class HelloWorld {
         if (System.getenv("KEYSTORE") != null) {
             return System.getenv("KEYSTORE");
         }
-        return "certificados/ecikeystore.p12";
+        return "target/certificados/ecikeystore.p12";
     }
 
     private static String getPwdKeyStore() {
